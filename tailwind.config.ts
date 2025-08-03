@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'cosmic': ['Orbitron', 'Arial Black', 'sans-serif'],
+				'mono': ['JetBrains Mono', 'Courier New', 'monospace'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,7 +65,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Cosmic color palette
+				'space-void': 'hsl(var(--space-void))',
+				'space-deep': 'hsl(var(--space-deep))',
+				'space-medium': 'hsl(var(--space-medium))',
+				'space-surface': 'hsl(var(--space-surface))',
+				'neon-purple': 'hsl(var(--neon-purple))',
+				'neon-cyan': 'hsl(var(--neon-cyan))',
+				'neon-blue': 'hsl(var(--neon-blue))',
+				'neon-pink': 'hsl(var(--neon-pink))',
+				'status-online': 'hsl(var(--status-online))',
+				'status-offline': 'hsl(var(--status-offline))',
+				'status-processing': 'hsl(var(--status-processing))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
