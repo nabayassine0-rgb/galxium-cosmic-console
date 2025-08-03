@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Zap, Wifi, WifiOff, Clock, Activity } from 'lucide-react';
+import { Zap, Wifi, WifiOff, Clock, Activity, MoreHorizontal } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export const GalxiumHeader = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -34,48 +35,50 @@ export const GalxiumHeader = () => {
   };
 
   return (
-    <header className="cosmic-panel border-b border-border/50 backdrop-blur-md">
-      <div className="flex items-center justify-between px-6 py-4">
+    <header className="glass-panel border-b border-white/10">
+      <div className="flex items-center justify-between px-8 py-5">
         {/* Left: Galxium Logo & Status */}
-        <div className="flex items-center space-x-6">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-8">
+          <div className="flex items-center space-x-4">
             <div className="relative">
-              <Zap className="w-8 h-8 text-primary cosmic-glow-purple" />
-              <div className="absolute -inset-1 aurora-bg opacity-20 rounded-full blur-sm" />
+              <div className="w-10 h-10 galaxy-gradient rounded-xl flex items-center justify-center hover-glow">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <div className="absolute -inset-1 galaxy-gradient opacity-30 rounded-xl blur-sm" />
             </div>
             <div>
-              <h1 className="font-cosmic text-xl font-bold text-primary">
+              <h1 className="font-space text-2xl font-bold text-cosmic tracking-wide">
                 GALXIUM
               </h1>
-              <p className="text-xs text-muted-foreground">
-                Cosmic AI v2.7.3
+              <p className="text-xs text-muted-foreground font-light">
+                Cosmic Intelligence v3.0.1
               </p>
             </div>
           </div>
 
           {/* System Status */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-3 px-4 py-2 glass-panel rounded-lg">
               {isOnline ? (
-                <Wifi className="w-4 h-4 status-online" />
+                <Wifi className="w-4 h-4 status-active" />
               ) : (
-                <WifiOff className="w-4 h-4 status-offline" />
+                <WifiOff className="w-4 h-4 status-error" />
               )}
-              <span className={`text-xs font-mono ${
-                isOnline ? 'status-online' : 'status-offline'
+              <span className={`text-sm font-medium ${
+                isOnline ? 'status-active' : 'status-error'
               }`}>
-                {isOnline ? 'ONLINE' : 'OFFLINE'}
+                {isOnline ? 'CONNECTED' : 'OFFLINE'}
               </span>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3 px-4 py-2 glass-panel rounded-lg">
               <Activity className="w-4 h-4 text-accent" />
-              <span className="text-xs font-mono text-muted-foreground">
-                SYS: {systemLoad.toFixed(0)}%
+              <span className="text-sm font-medium text-muted-foreground">
+                Load: {systemLoad.toFixed(0)}%
               </span>
-              <div className="w-16 h-1 bg-card rounded-full overflow-hidden">
+              <div className="w-16 h-2 progress-cosmic rounded-full">
                 <div 
-                  className="h-full bg-accent transition-all duration-1000"
+                  className="progress-fill h-full"
                   style={{ width: `${systemLoad}%` }}
                 />
               </div>
@@ -83,19 +86,23 @@ export const GalxiumHeader = () => {
           </div>
         </div>
 
-        {/* Right: Time & Date */}
+        {/* Right: Time & Controls */}
         <div className="flex items-center space-x-6">
           <div className="text-right">
-            <div className="flex items-center space-x-2">
-              <Clock className="w-4 h-4 text-accent" />
-              <span className="font-cosmic text-lg text-primary">
+            <div className="flex items-center space-x-3 mb-1">
+              <Clock className="w-5 h-5 text-accent" />
+              <span className="font-space text-2xl font-semibold text-cosmic">
                 {formatTime(currentTime)}
               </span>
             </div>
-            <p className="text-xs text-muted-foreground font-mono">
-              {formatDate(currentTime)} - GALACTIC STANDARD
+            <p className="text-sm text-muted-foreground font-light">
+              {formatDate(currentTime)} • Galactic Standard Time
             </p>
           </div>
+
+          <Button variant="ghost" size="sm" className="glass-button hover-lift p-3">
+            <MoreHorizontal className="w-5 h-5 text-muted-foreground" />
+          </Button>
         </div>
       </div>
     </header>

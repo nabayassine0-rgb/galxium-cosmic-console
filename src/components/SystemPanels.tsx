@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronRight, Brain, BookOpen, Cpu, Shield, Zap, Database } from 'lucide-react';
+import { ChevronDown, ChevronRight, Brain, BookOpen, Cpu, Shield, Zap, Database, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 
@@ -15,7 +15,7 @@ export const SystemPanels = () => {
   const [panels, setPanels] = useState<PanelSection[]>([
     {
       id: 'memory',
-      title: 'Memory Core',
+      title: 'Neural Core',
       icon: Brain,
       isOpen: true,
       content: {
@@ -23,18 +23,18 @@ export const SystemPanels = () => {
         usedMemory: '1.8 PB',
         memoryEfficiency: 87,
         activeThreads: 15847,
-        lastUpdate: '2 minutes ago'
+        lastUpdate: 'Real-time'
       }
     },
     {
       id: 'missions',
-      title: 'Mission Logs',
+      title: 'Mission Archive',
       icon: BookOpen,
       isOpen: false,
       content: {
         activeMissions: 3,
         completedMissions: 1247,
-        lastMission: 'Deep Space Reconnaissance',
+        lastMission: 'Deep Space Analysis',
         successRate: '98.7%'
       }
     },
@@ -65,87 +65,106 @@ export const SystemPanels = () => {
   };
 
   const renderMemoryContent = (content: any) => (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="grid grid-cols-2 gap-4">
-        <div className="cosmic-panel p-3 rounded">
-          <p className="text-xs text-muted-foreground">Total Capacity</p>
-          <p className="font-cosmic text-lg text-primary">{content.totalMemory}</p>
+        <div className="glass-panel p-4 rounded-xl text-center hover-lift">
+          <p className="text-xs text-muted-foreground mb-2 font-light">Total Capacity</p>
+          <p className="font-space text-xl font-bold text-cosmic">{content.totalMemory}</p>
         </div>
-        <div className="cosmic-panel p-3 rounded">
-          <p className="text-xs text-muted-foreground">Used</p>
-          <p className="font-cosmic text-lg text-accent">{content.usedMemory}</p>
+        <div className="glass-panel p-4 rounded-xl text-center hover-lift">
+          <p className="text-xs text-muted-foreground mb-2 font-light">In Use</p>
+          <p className="font-space text-xl font-bold text-accent">{content.usedMemory}</p>
         </div>
       </div>
       
-      <div className="space-y-2">
-        <div className="flex justify-between text-xs">
-          <span className="text-muted-foreground">Memory Efficiency</span>
-          <span className="text-primary">{content.memoryEfficiency}%</span>
+      <div className="space-y-3">
+        <div className="flex justify-between text-sm">
+          <span className="text-muted-foreground font-light">Neural Efficiency</span>
+          <span className="text-cosmic font-semibold">{content.memoryEfficiency}%</span>
         </div>
-        <Progress value={content.memoryEfficiency} className="h-2" />
+        <div className="progress-cosmic h-3 rounded-full">
+          <div 
+            className="progress-fill"
+            style={{ width: `${content.memoryEfficiency}%` }}
+          />
+        </div>
       </div>
       
-      <div className="grid grid-cols-2 gap-4 text-xs">
-        <div>
-          <span className="text-muted-foreground">Active Threads:</span>
-          <span className="text-accent ml-2 font-mono">{content.activeThreads.toLocaleString()}</span>
+      <div className="grid grid-cols-1 gap-4 text-sm">
+        <div className="glass-panel p-4 rounded-xl">
+          <div className="flex justify-between items-center">
+            <span className="text-muted-foreground font-light">Active Threads:</span>
+            <span className="text-accent font-semibold">{content.activeThreads.toLocaleString()}</span>
+          </div>
         </div>
-        <div>
-          <span className="text-muted-foreground">Last Update:</span>
-          <span className="text-primary ml-2">{content.lastUpdate}</span>
+        <div className="glass-panel p-4 rounded-xl">
+          <div className="flex justify-between items-center">
+            <span className="text-muted-foreground font-light">Status:</span>
+            <span className="status-active font-semibold">{content.lastUpdate}</span>
+          </div>
         </div>
       </div>
     </div>
   );
 
   const renderMissionContent = (content: any) => (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="grid grid-cols-2 gap-4">
-        <div className="cosmic-panel p-3 rounded text-center">
-          <p className="font-cosmic text-2xl text-accent">{content.activeMissions}</p>
-          <p className="text-xs text-muted-foreground">Active</p>
+        <div className="glass-panel p-4 rounded-xl text-center hover-lift">
+          <p className="font-space text-3xl font-bold text-accent mb-1">{content.activeMissions}</p>
+          <p className="text-xs text-muted-foreground font-light">Active</p>
         </div>
-        <div className="cosmic-panel p-3 rounded text-center">
-          <p className="font-cosmic text-2xl text-primary">{content.completedMissions}</p>
-          <p className="text-xs text-muted-foreground">Completed</p>
+        <div className="glass-panel p-4 rounded-xl text-center hover-lift">
+          <p className="font-space text-3xl font-bold text-cosmic mb-1">{content.completedMissions}</p>
+          <p className="text-xs text-muted-foreground font-light">Completed</p>
         </div>
       </div>
       
-      <div className="cosmic-border-glow p-3 rounded">
-        <p className="text-xs text-muted-foreground mb-1">Latest Mission</p>
-        <p className="text-sm text-primary font-medium">{content.lastMission}</p>
-        <p className="text-xs text-accent mt-2">Success Rate: {content.successRate}</p>
+      <div className="glass-panel p-5 rounded-xl hover-lift stardust-shimmer">
+        <p className="text-xs text-muted-foreground mb-2 font-light">Latest Mission</p>
+        <p className="text-base text-cosmic font-semibold mb-3">{content.lastMission}</p>
+        <div className="flex justify-between items-center">
+          <span className="text-sm text-muted-foreground">Success Rate:</span>
+          <span className="text-accent font-semibold">{content.successRate}</span>
+        </div>
       </div>
     </div>
   );
 
   const renderModulesContent = (content: any) => (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="grid grid-cols-2 gap-4">
-        <div className="cosmic-panel p-3 rounded text-center">
-          <p className="font-cosmic text-xl text-primary">{content.activeModules}</p>
-          <p className="text-xs text-muted-foreground">Active</p>
+        <div className="glass-panel p-4 rounded-xl text-center hover-lift">
+          <p className="font-space text-2xl font-bold text-cosmic mb-1">{content.activeModules}</p>
+          <p className="text-xs text-muted-foreground font-light">Active</p>
         </div>
-        <div className="cosmic-panel p-3 rounded text-center">
-          <p className="font-cosmic text-xl text-accent">{content.installedModules}</p>
-          <p className="text-xs text-muted-foreground">Total</p>
+        <div className="glass-panel p-4 rounded-xl text-center hover-lift">
+          <p className="font-space text-2xl font-bold text-accent mb-1">{content.installedModules}</p>
+          <p className="text-xs text-muted-foreground font-light">Total</p>
         </div>
       </div>
       
-      <div className="space-y-2">
+      <div className="space-y-3">
         {content.modules.map((module: any, index: number) => (
-          <div key={index} className="cosmic-border p-2 rounded">
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-sm text-foreground">{module.name}</span>
-              <span className={`text-xs px-2 py-1 rounded ${
-                module.status === 'active' ? 'status-online bg-primary/20' : 'text-muted-foreground bg-muted/20'
+          <div key={index} className="glass-panel p-4 rounded-xl hover-lift">
+            <div className="flex justify-between items-center mb-3">
+              <span className="text-sm font-medium text-foreground">{module.name}</span>
+              <span className={`text-xs px-3 py-1 rounded-full font-medium ${
+                module.status === 'active' 
+                  ? 'status-active galaxy-gradient text-white' 
+                  : 'text-muted-foreground bg-muted/20'
               }`}>
                 {module.status.toUpperCase()}
               </span>
             </div>
-            <div className="flex items-center space-x-2">
-              <Progress value={module.load} className="h-1 flex-1" />
-              <span className="text-xs text-muted-foreground font-mono w-8">{module.load}%</span>
+            <div className="flex items-center space-x-3">
+              <div className="progress-cosmic h-2 flex-1 rounded-full">
+                <div 
+                  className="progress-fill"
+                  style={{ width: `${module.load}%` }}
+                />
+              </div>
+              <span className="text-xs text-muted-foreground font-medium w-10 text-right">{module.load}%</span>
             </div>
           </div>
         ))}
@@ -172,26 +191,28 @@ export const SystemPanels = () => {
         const Icon = panel.icon;
         
         return (
-          <div key={panel.id} className="cosmic-panel rounded-lg overflow-hidden">
+          <div key={panel.id} className="glass-panel hover-lift overflow-hidden">
             <Button
               variant="ghost"
               onClick={() => togglePanel(panel.id)}
-              className="w-full justify-between p-4 h-auto text-left hover:bg-accent/10"
+              className="w-full justify-between p-6 h-auto text-left hover:bg-white/5 rounded-none"
             >
-              <div className="flex items-center space-x-3">
-                <Icon className="w-5 h-5 text-accent" />
-                <span className="font-cosmic text-primary">{panel.title}</span>
+              <div className="flex items-center space-x-4">
+                <div className="w-10 h-10 galaxy-gradient rounded-xl flex items-center justify-center">
+                  <Icon className="w-5 h-5 text-white" />
+                </div>
+                <span className="font-space text-lg font-semibold text-cosmic">{panel.title}</span>
               </div>
               {panel.isOpen ? (
-                <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                <ChevronDown className="w-5 h-5 text-muted-foreground" />
               ) : (
-                <ChevronRight className="w-4 h-4 text-muted-foreground" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
               )}
             </Button>
             
             {panel.isOpen && (
-              <div className="px-4 pb-4 border-t border-border/50">
-                <div className="pt-4">
+              <div className="px-6 pb-6 border-t border-white/10">
+                <div className="pt-6">
                   {renderContent(panel)}
                 </div>
               </div>

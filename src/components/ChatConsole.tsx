@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Mic, MicOff, Settings } from 'lucide-react';
+import { Send, Mic, MicOff, Settings, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -16,7 +16,7 @@ export const ChatConsole = () => {
     {
       id: '1',
       type: 'galxium',
-      content: 'Greetings, Commander. I am Galxium, your cosmic AI companion. How may I assist you in navigating the infinite expanse of space and knowledge?',
+      content: 'Welcome to Galxium, your advanced cosmic intelligence companion. I\'m here to assist you in exploring the vast expanse of knowledge and possibilities across the universe.',
       timestamp: new Date(),
     }
   ]);
@@ -44,7 +44,7 @@ export const ChatConsole = () => {
         
         setMessages(prev => prev.map(msg => 
           msg.id === messageId 
-            ? { ...msg, content: currentText + '▮', isTyping: true }
+            ? { ...msg, content: currentText, isTyping: true }
             : msg
         ));
         
@@ -58,7 +58,7 @@ export const ChatConsole = () => {
         setTypingMessageId(null);
         clearInterval(typeInterval);
       }
-    }, 30 + Math.random() * 20); // Variable typing speed for realism
+    }, 25 + Math.random() * 15);
   };
 
   const handleSendMessage = () => {
@@ -77,11 +77,11 @@ export const ChatConsole = () => {
     // Simulate Galxium response
     setTimeout(() => {
       const responses = [
-        "Fascinating query, Commander. Let me analyze the cosmic data streams...",
-        "Processing your request through my quantum neural networks...",
-        "Consulting the galactic knowledge archives for optimal solutions...",
-        "Interesting perspective. The stars whisper of infinite possibilities...",
-        "Your wisdom resonates across the cosmic frequencies, Commander.",
+        "Your inquiry resonates through the cosmic data streams. Let me process this through my neural networks to provide you with comprehensive insights.",
+        "Fascinating perspective. I'm analyzing patterns across galactic knowledge repositories to offer you the most relevant guidance.",
+        "Processing your request through quantum computational matrices. The universe holds infinite wisdom that I'm eager to share with you.",
+        "Your question opens new pathways of exploration. Allow me to traverse the cosmic databases and return with valuable insights.",
+        "Engaging deep learning protocols to understand your needs. The stars align to provide you with meaningful assistance.",
       ];
 
       const responseId = (Date.now() + 1).toString();
@@ -101,8 +101,8 @@ export const ChatConsole = () => {
           responses[Math.floor(Math.random() * responses.length)],
           responseId
         );
-      }, 500);
-    }, 1000 + Math.random() * 1000);
+      }, 800);
+    }, 1200 + Math.random() * 800);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -118,47 +118,58 @@ export const ChatConsole = () => {
   };
 
   return (
-    <div className="flex flex-col h-full cosmic-panel rounded-lg">
+    <div className="flex flex-col h-full glass-panel hover-lift">
       {/* Chat Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border/50">
-        <div className="flex items-center space-x-3">
-          <div className="w-3 h-3 rounded-full status-online"></div>
-          <h2 className="font-cosmic text-lg text-primary">
-            Galxium Console
-          </h2>
+      <div className="flex items-center justify-between p-6 border-b border-white/10">
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
+            <div className="w-3 h-3 rounded-full status-active shadow-glow"></div>
+            <h2 className="font-space text-xl font-semibold text-cosmic">
+              Cosmic Console
+            </h2>
+          </div>
         </div>
-        <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
-          <Settings className="w-4 h-4" />
+        <Button variant="ghost" size="sm" className="glass-button hover-glow">
+          <Settings className="w-5 h-5" />
         </Button>
       </div>
 
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto p-6 space-y-6 modern-scrollbar">
         {messages.map((message) => (
           <div
             key={message.id}
             className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div
-              className={`max-w-[80%] rounded-lg p-3 ${
+              className={`max-w-[75%] rounded-2xl p-5 ${
                 message.type === 'user'
-                  ? 'cosmic-border-glow aurora-bg text-card-foreground'
-                  : 'cosmic-panel border border-accent/20'
+                  ? 'galaxy-gradient text-white shadow-glow'
+                  : 'glass-panel hover-lift'
               }`}
             >
-              <div className="flex items-start space-x-3">
+              <div className="flex items-start space-x-4">
                 {message.type === 'galxium' && (
-                  <div className="w-6 h-6 rounded-full aurora-bg flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-xs font-bold text-card-foreground">G</span>
+                  <div className="w-8 h-8 galaxy-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-glow">
+                    <Sparkles className="w-4 h-4 text-white" />
                   </div>
                 )}
                 <div className="flex-1">
-                  <p className={`text-sm font-mono ${
-                    message.type === 'user' ? 'text-card-foreground' : 'text-foreground'
+                  <p className={`text-base leading-relaxed ${
+                    message.type === 'user' ? 'text-white font-medium' : 'text-foreground'
                   }`}>
                     {message.content}
+                    {message.isTyping && (
+                      <span className="inline-flex ml-2">
+                        <div className="typing-indicator">
+                          <div className="typing-dot"></div>
+                          <div className="typing-dot"></div>
+                          <div className="typing-dot"></div>
+                        </div>
+                      </span>
+                    )}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-muted-foreground/70 mt-3 font-light">
                     {message.timestamp.toLocaleTimeString()}
                   </p>
                 </div>
@@ -170,16 +181,16 @@ export const ChatConsole = () => {
       </div>
 
       {/* Input Area */}
-      <div className="p-4 border-t border-border/50">
-        <div className="flex items-center space-x-3">
+      <div className="p-6 border-t border-white/10">
+        <div className="flex items-center space-x-4">
           <div className="flex-1 relative">
             <Input
               ref={inputRef}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Transmit message to Galxium..."
-              className="cosmic-input pr-12 font-mono"
+              placeholder="Ask Galxium anything..."
+              className="glass-input text-base py-4 px-6 rounded-2xl border-0 bg-transparent placeholder:text-muted-foreground/70"
               disabled={typingMessageId !== null}
             />
           </div>
@@ -187,20 +198,20 @@ export const ChatConsole = () => {
           <Button
             onClick={toggleListening}
             variant="ghost"
-            size="sm"
-            className={`cosmic-border ${
-              isListening ? 'cosmic-glow-purple text-accent' : 'text-muted-foreground'
+            size="lg"
+            className={`glass-button p-4 rounded-xl ${
+              isListening ? 'galaxy-gradient text-white shadow-glow' : ''
             }`}
           >
-            {isListening ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
+            {isListening ? <Mic className="w-5 h-5" /> : <MicOff className="w-5 h-5" />}
           </Button>
           
           <Button
             onClick={handleSendMessage}
             disabled={!inputValue.trim() || typingMessageId !== null}
-            className="cosmic-button"
+            className="galaxy-gradient hover:shadow-glow text-white px-6 py-4 rounded-xl font-medium"
           >
-            <Send className="w-4 h-4" />
+            <Send className="w-5 h-5" />
           </Button>
         </div>
       </div>

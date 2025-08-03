@@ -19,8 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'cosmic': ['Orbitron', 'Arial Black', 'sans-serif'],
-				'mono': ['JetBrains Mono', 'Courier New', 'monospace'],
+				'space': ['Space Grotesk', 'system-ui', 'sans-serif'],
+				'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -66,18 +66,19 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Cosmic color palette
-				'space-void': 'hsl(var(--space-void))',
-				'space-deep': 'hsl(var(--space-deep))',
+				// Modern Galaxy color palette
+				'galaxy-purple': 'hsl(var(--galaxy-purple))',
+				'galaxy-blue': 'hsl(var(--galaxy-blue))',
+				'galaxy-cyan': 'hsl(var(--galaxy-cyan))',
+				'galaxy-pink': 'hsl(var(--galaxy-pink))',
+				'galaxy-violet': 'hsl(var(--galaxy-violet))',
+				'space-black': 'hsl(var(--space-black))',
+				'space-dark': 'hsl(var(--space-dark))',
 				'space-medium': 'hsl(var(--space-medium))',
-				'space-surface': 'hsl(var(--space-surface))',
-				'neon-purple': 'hsl(var(--neon-purple))',
-				'neon-cyan': 'hsl(var(--neon-cyan))',
-				'neon-blue': 'hsl(var(--neon-blue))',
-				'neon-pink': 'hsl(var(--neon-pink))',
-				'status-online': 'hsl(var(--status-online))',
-				'status-offline': 'hsl(var(--status-offline))',
-				'status-processing': 'hsl(var(--status-processing))',
+				'space-light': 'hsl(var(--space-light))',
+				'success': 'hsl(var(--success))',
+				'warning': 'hsl(var(--warning))',
+				'error': 'hsl(var(--error))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
